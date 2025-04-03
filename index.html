@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTC Student Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="light">
+    <!-- Login Container -->
+    <div id="loginContainer" class="login-container">
+        <div class="login-box">
+            <img src="logo3.png" alt="NTC Logo" class="logo"> <!-- Add your logo here -->
+            <h2 class="title"></i> NTC Student Portal</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" id="loginBtn">Login</button>
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Container (hidden by default) -->
+    <div id="mainContainer" class="main-container hidden">
+        <header>
+            <h1><i class="fas fa-graduation-cap"></i> NTC School Portal</h1>
+            <div class="user-section">
+                <span id="userDisplay">Welcome, User</span>
+                <div class="theme-toggle">
+                    <input type="checkbox" id="themeSwitch">
+                    <label for="themeSwitch" class="theme-toggle-label">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                        <span class="toggle-ball"></span>
+                    </label>
+                </div>
+                <div class="profile-avatar" id="profileAvatar">
+                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' width='50' height='50'%3e%3ccircle cx='25' cy='25' r='25' fill='%23e0e0e0'/%3e%3ccircle cx='25' cy='18' r='7' fill='%23c0c0c0'/%3e%3cpath d='M40,42c0-8.3-6.7-15-15-15s-15,6.7-15,15' fill='%23c0c0c0'/%3e%3c/svg%3e" alt="Profile">
+                </div>
+                <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="tree-container">
+                <ul class="tree">
+                    <li>
+                        <span class="caret active-item" data-content-id="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</span>
+                    </li>
+                    <li>
+                        <span class="caret"><i class="fas fa-coins"></i> Accounts Receivable</span>
+                        <ul class="nested">
+                            <li class="menu-item" data-content-id="account-statement"><i class="fas fa-file-invoice-dollar"></i> Statement Of Account Report</li>
+                            <li class="menu-item" data-content-id="payment-report"><i class="fas fa-receipt"></i> Payment Report</li>
+                            <li class="menu-item" data-content-id="payment-center"><i class="fas fa-credit-card"></i> Online Payment Center</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="caret"><i class="fas fa-user-graduate"></i> Student Information</span>
+                        <ul class="nested">
+                            <li class="menu-item" data-content-id="student-maintenance"><i class="fas fa-user-edit"></i> Student Master File Maintenance</li>
+                            <li class="menu-item" data-content-id="grade-display"><i class="fas fa-chart-bar"></i> HS/GS Latest Grade Display</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="caret"><i class="fas fa-school"></i> Enrollment Support</span>
+                        <ul class="nested">
+                            <li class="menu-item" data-content-id="online-enrollment"><i class="fas fa-user-plus"></i> Online Enrollment</li>
+                            <li class="menu-item" data-content-id="registration-cert"><i class="fas fa-certificate"></i> Certificate of Registration</li>
+                            <li class="menu-item" data-content-id="schedule-inquiry"><i class="fas fa-calendar-alt"></i> Subject Schedule Inquiry</li>
+                            <li class="menu-item" data-content-id="current-enrollment"><i class="fas fa-clipboard-list"></i> Current Enrollment</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="caret"><i class="fas fa-hands-helping"></i> Student Services</span>
+                        <ul class="nested">
+                            <li class="menu-item" data-content-id="school-map"><i class="fas fa-map-marked-alt"></i> School Map</li>
+                            <li class="menu-item" data-content-id="evaluation-report"><i class="fas fa-chart-line"></i> Individual Evaluation Report</li>
+                            <li class="menu-item" data-content-id="teacher-evaluation"><i class="fas fa-chalkboard-teacher"></i> Teacher Performance Evaluation</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="caret"><i class="fas fa-user-check"></i> Student Performance</span>
+                        <ul class="nested">
+                            <li class="menu-item" data-content-id="grades-display"><i class="fas fa-graduation-cap"></i> Display Own Grades College/Graduate School</li>
+                            <li class="menu-item" data-content-id="grade-completion"><i class="fas fa-tasks"></i> Request for Grade Completion</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="caret"><i class="fas fa-heartbeat"></i> Student Health</span>
+                        <ul class="nested">
+                            <li class="menu-item" data-content-id="medical-record"><i class="fas fa-notes-medical"></i> Student Medical Record Entry</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="caret"><i class="fas fa-cogs"></i> Utilities</span>
+                        <ul class="nested">
+                            <li class="menu-item" data-content-id="change-password"><i class="fas fa-key"></i> Change Own Password</li>
+                            <li class="menu-item" data-content-id="profile-settings"><i class="fas fa-user-cog"></i> Profile Settings</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="content-area">
+                <h2 id="contentTitle"><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+                <div id="contentContainer">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Avatar Modal -->
+    <div id="avatarModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-circle"></i> Choose Profile Avatar</h3>
+                <button id="closeAvatarModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="avatar-options">
+                    <div class="avatar-option" data-color="#4285F4">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' width='50' height='50'%3e%3ccircle cx='25' cy='25' r='25' fill='%234285F4'/%3e%3ccircle cx='25' cy='18' r='7' fill='white'/%3e%3cpath d='M40,42c0-8.3-6.7-15-15-15s-15,6.7-15,15' fill='white'/%3e%3c/svg%3e" alt="Blue">
+                    </div>
+                    <div class="avatar-option" data-color="#0F9D58">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' width='50' height='50'%3e%3ccircle cx='25' cy='25' r='25' fill='%230F9D58'/%3e%3ccircle cx='25' cy='18' r='7' fill='white'/%3e%3cpath d='M40,42c0-8.3-6.7-15-15-15s-15,6.7-15,15' fill='white'/%3e%3c/svg%3e" alt="Green">
+                    </div>
+                    <div class="avatar-option" data-color="#DB4437">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' width='50' height='50'%3e%3ccircle cx='25' cy='25' r='25' fill='%23DB4437'/%3e%3ccircle cx='25' cy='18' r='7' fill='white'/%3e%3cpath d='M40,42c0-8.3-6.7-15-15-15s-15,6.7-15,15' fill='white'/%3e%3c/svg%3e" alt="Red">
+                    </div>
+                    <div class="avatar-option" data-color="#F4B400">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' width='50' height='50'%3e%3ccircle cx='25' cy='25' r='25' fill='%23F4B400'/%3e%3ccircle cx='25' cy='18' r='7' fill='white'/%3e%3cpath d='M40,42c0-8.3-6.7-15-15-15s-15,6.7-15,15' fill='white'/%3e%3c/svg%3e" alt="Yellow">
+                    </div>
+                    <div class="avatar-option" data-color="#9C27B0">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' width='50' height='50'%3e%3ccircle cx='25' cy='25' r='25' fill='%239C27B0'/%3e%3ccircle cx='25' cy='18' r='7' fill='white'/%3e%3cpath d='M40,42c0-8.3-6.7-15-15-15s-15,6.7-15,15' fill='white'/%3e%3c/svg%3e" alt="Purple">
+                    </div>
+                    <div class="avatar-option" data-color="#795548">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' width='50' height='50'%3e%3ccircle cx='25' cy='25' r='25' fill='%23795548'/%3e%3ccircle cx='25' cy='18' r='7' fill='white'/%3e%3cpath d='M40,42c0-8.3-6.7-15-15-15s-15,6.7-15,15' fill='white'/%3e%3c/svg%3e" alt="Brown">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelAvatarModal">Cancel</button>
+                <button id="saveAvatar">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Standard Modal -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle"><i id="modalIcon" class="fas fa-info-circle"></i> Modal Title</h3>
+                <button id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalContent">
+                Modal content will be inserted here
+            </div>
+            <div class="modal-footer">
+                <button id="cancelModal">Cancel</button>
+                <button id="confirmModal">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Widget Configuration Modal -->
+    <div id="widgetModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-puzzle-piece"></i> Customize Dashboard Widgets</h3>
+                <button id="closeWidgetModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Select which widgets to display on your dashboard:</p>
+                <div class="widget-options">
+                    <div class="widget-option">
+                        <input type="checkbox" id="calendarWidget" checked>
+                        <label for="calendarWidget">Calendar</label>
+                    </div>
+                    <div class="widget-option">
+                        <input type="checkbox" id="upcomingWidget" checked>
+                        <label for="upcomingWidget">Upcoming Deadlines</label>
+                    </div>
+                    <div class="widget-option">
+                        <input type="checkbox" id="gradesWidget" checked>
+                        <label for="gradesWidget">Recent Grades</label>
+                    </div>
+                    <div class="widget-option">
+                        <input type="checkbox" id="announcementsWidget" checked>
+                        <label for="announcementsWidget">Announcements</label>
+                    </div>
+                    <div class="widget-option">
+                        <input type="checkbox" id="balanceWidget" checked>
+                        <label for="balanceWidget">Account Balance</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelWidgetModal">Cancel</button>
+                <button id="saveWidgets">Save Configuration</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-toggle" id="chatbotToggle">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chatbot-window hidden" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h3><i class="fas fa-robot"></i> NTC Assistant</h3>
+                <button id="closeChatbot">&times;</button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        Hello! I'm your NTC Assistant. How can I help you today?
+                    </div>
+                </div>
+                <div class="message bot-message">
+                    <div class="message-content">
+                        You can ask me about grades, schedules, enrollment, or general information.
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your message here...">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="calendar.js"></script>
+</body>
+</html>
