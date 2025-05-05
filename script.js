@@ -70,7 +70,9 @@ document.addEventListener('DOMContentLoaded', function() {
   if (cancelModal) {
     cancelModal.addEventListener('click', closeModalFunction);
   }
-
+  if (confirmModal) {
+    confirmModal.addEventListener('click', closeModalFunction);
+  }
   // Handle Log Out
   if (logoutBtn) {
     logoutBtn.addEventListener('click', function() {
@@ -295,17 +297,14 @@ document.addEventListener('DOMContentLoaded', function() {
           </tfoot>
         </table>
 
-        <div class="buttons-container" style="margin-top: 20px;">
-          <button class="widget-config-btn">
-            <i class="fas fa-print"></i> Print Report Card
+       <div style="margin-top: 20px;">
+          <button onclick="window.print()" style="padding: 10px 20px; background-color: #2c3e50; color: white; border: none; cursor: pointer;">
+            <i class="fas fa-print"></i> Download / Print Statement
           </button>
-          <button class="widget-config-btn">
-            <i class="fas fa-file-pdf"></i> Save as PDF
-          </button>
-        </div>
 
-        <div class="update-msg" style="margin-top: 10px;">Last updated: April 2, 2025</div>
+        <div class="update-msg" style="margin-top: 10px;">Last updated: May 5, 2025</div>
       </div>
+      
     `;
   }
 
@@ -619,18 +618,46 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
 
-        <div class="buttons-container" style="margin-top: 20px;">
-          <button class="widget-config-btn">
-            <i class="fas fa-print"></i> Print Schedule
+       <div style="margin-top: 20px;">
+          <button onclick="window.print()" style="padding: 10px 20px; background-color: #2c3e50; color: white; border: none; cursor: pointer;">
+            <i class="fas fa-print"></i> Download / Print Statement
           </button>
-          <button class="widget-config-btn">
-            <i class="fas fa-file-pdf"></i> Save as PDF
-          </button>
-          <button class="widget-config-btn">
-            <i class="fas fa-calendar-plus"></i> Add to Calendar
-          </button>
-        </div>
-      </div>
+          <style>
+      @media print {
+        body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+        }
+
+        .content-section {
+          width: 100%;
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .form-row, .form-group, .info-box {
+          display: none;
+        }
+
+        .modal-table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        .modal-table th, .modal-table td {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        .modal-table th {
+          background-color: #f4f4f4;
+        }
+
+        button {
+          display: none;
+        }
+      }
+    </style>
     `;
   }
 
@@ -757,122 +784,189 @@ document.addEventListener('DOMContentLoaded', function() {
           </tfoot>
         </table>
 
-        <div class="buttons-container" style="margin-top: 20px;">
-          <button class="widget-config-btn">
-            <i class="fas fa-print"></i> Print Registration
+        <<div style="margin-top: 20px;">
+          <button onclick="window.print()" style="padding: 10px 20px; background-color: #2c3e50; color: white; border: none; cursor: pointer;">
+            <i class="fas fa-print"></i> Download / Print Statement
           </button>
-          <button class="widget-config-btn">
-            <i class="fas fa-file-pdf"></i> Download Certificate of Registration
-          </button>
-        </div>
-      </div>
+
+          <style>
+      @media print {
+        body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+        }
+
+        .content-section {
+          width: 100%;
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .form-row, .form-group, .info-box {
+          display: none;
+        }
+
+        .modal-table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        .modal-table th, .modal-table td {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        .modal-table th {
+          background-color: #f4f4f4;
+        }
+
+        button {
+          display: none;
+        }
+      }
+    </style>
     `;
   }
 
   // Generate College Grades Display
   function generateCollegeGradesDisplay() {
-    return `
-      <div class="content-section">
-        <div class="info-box">
-          <i class="fas fa-info-circle"></i>
-          <div>
-            <p>Below are your grades for the current semester (2025 Spring).</p>
-          </div>
-        </div>
-
-        <div class="form-row" style="margin-bottom: 20px;">
-          <div class="form-group">
-            <label for="semesterSelect">Select Semester</label>
-            <select id="semesterSelect">
-              <option value="2025-2">Spring 2025 (Current)</option>
-              <option value="2025-1">Fall 2024</option>
-              <option value="2024-2">Spring 2024</option>
-              <option value="2024-1">Fall 2023</option>
-            </select>
-          </div>
-        </div>
-
-        <table class="modal-table">
-          <thead>
-            <tr>
-              <th>Subject Code</th>
-              <th>Description</th>
-              <th>Units</th>
-              <th>Midterm</th>
-              <th>Final</th>
-              <th>Grade</th>
-              <th>Remarks</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>MATH101</td>
-              <td>Mathematics 101</td>
-              <td>3</td>
-              <td>92</td>
-              <td>93</td>
-              <td>92.5 (A)</td>
-              <td><span class="status-pill status-paid">Passed</span></td>
-            </tr>
-            <tr>
-              <td>PHYS201</td>
-              <td>Physics 201</td>
-              <td>4</td>
-              <td>87</td>
-              <td>89</td>
-              <td>88.0 (B+)</td>
-              <td><span class="status-pill status-paid">Passed</span></td>
-            </tr>
-            <tr>
-              <td>ENGL150</td>
-              <td>English Literature</td>
-              <td>3</td>
-              <td>94</td>
-              <td>96</td>
-              <td>95.0 (A)</td>
-              <td><span class="status-pill status-paid">Passed</span></td>
-            </tr>
-            <tr>
-              <td>COMP220</td>
-              <td>Computer Science</td>
-              <td>4</td>
-              <td>91</td>
-              <td>89</td>
-              <td>90.0 (A-)</td>
-              <td><span class="status-pill status-paid">Passed</span></td>
-            </tr>
-            <tr>
-              <td>PE100</td>
-              <td>Physical Education</td>
-              <td>2</td>
-              <td>97</td>
-              <td>99</td>
-              <td>98.0 (A+)</td>
-              <td><span class="status-pill status-paid">Passed</span></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="2">Semester GPA</td>
-              <td>16</td>
-              <td colspan="2"></td>
-              <td>92.7 (A)</td>
-              <td></td>
-            </tr>
-          </tfoot>
-        </table>
-
-        <div class="buttons-container" style="margin-top: 20px;">
-          <button class="widget-config-btn">
-            <i class="fas fa-print"></i> Print Grade Report
-          </button>
-          <button class="widget-config-btn">
-            <i class="fas fa-file-pdf"></i> Download Transcript
-          </button>
+  return `
+    <div class="content-section">
+      <div class="info-box">
+        <i class="fas fa-info-circle"></i>
+        <div>
+          <p>Below are your grades for the current semester (2025 Spring).</p>
         </div>
       </div>
-    `;
-  }
+
+      <div class="form-row" style="margin-bottom: 20px;">
+        <div class="form-group">
+          <label for="semesterSelect">Select Semester</label>
+          <select id="semesterSelect">
+            <option value="2025-2">Spring 2025 (Current)</option>
+            <option value="2025-1">Fall 2024</option>
+            <option value="2024-2">Spring 2024</option>
+            <option value="2024-1">Fall 2023</option>
+          </select>
+        </div>
+      </div>
+
+      <table class="modal-table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <thead>
+          <tr>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">Subject Code</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">Description</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">Units</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">Midterm</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">Final</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">Grade</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">MATH101</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Mathematics 101</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">3</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">92</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">93</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">92.5 (A)</td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><span class="status-pill status-paid">Passed</span></td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">PHYS201</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Physics 201</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">4</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">87</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">89</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">88.0 (B+)</td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><span class="status-pill status-paid">Passed</span></td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">ENGL150</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">English Literature</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">3</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">94</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">96</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">95.0 (A)</td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><span class="status-pill status-paid">Passed</span></td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">COMP220</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Computer Science</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">4</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">91</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">89</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">90.0 (A-)</td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><span class="status-pill status-paid">Passed</span></td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">PE100</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Physical Education</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">2</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">97</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">99</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">98.0 (A+)</td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><span class="status-pill status-paid">Passed</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">Semester GPA</td>
+            <td style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">16</td>
+            <td colspan="2"></td>
+            <td style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4;">92.7 (A)</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div style="margin-top: 20px; text-align: center;">
+        <button onclick="window.print()" style="padding: 10px 20px; background-color: #2c3e50; color: white; border: none; cursor: pointer; font-size: 16px; border-radius: 5px;">
+          <i class="fas fa-print"></i> Download / Print Statement
+        </button>
+      </div>
+    </div>
+
+    <style>
+      @media print {
+        body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+        }
+
+        .content-section {
+          width: 100%;
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .form-row, .form-group, .info-box {
+          display: none;
+        }
+
+        .modal-table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        .modal-table th, .modal-table td {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        .modal-table th {
+          background-color: #f4f4f4;
+        }
+
+        button {
+          display: none;
+        }
+      }
+    </style>
+  `;
+}
+
 
   // Generate Grade Completion Request
   function generateGradeCompletionRequest() {
@@ -1293,7 +1387,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </tr>
             <tr>
               <td>Amount Paid</td>
-              <td>₱15,000.00</td>
+              <td>₱18,500.00</td>
             </tr>
             <tr>
               <td>Balance</td>
@@ -1376,13 +1470,678 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
       `;
-    } else {
-      // Default modal content
+    } else if (contentId === 'teacher-evaluation') {
       return `
-        <p>This is a demonstration of the modal for <strong>${contentId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</strong>.</p>
-        <p>In a complete implementation, this would contain actual functionality related to ${contentId.replace(/-/g, ' ')}.</p>
+        <p>Please fill out the form to evaluate a teacher's performance:</p>
+    
+        <div style="margin: 20px 0;">
+          <label for="teacherName"><strong>Teacher's Name:</strong></label><br>
+          <select id="teacherName" style="width: 100%; padding: 8px; margin-top: 5px;">
+            <option value="Prof. Ariana-Butera">Prof. Ariana-Butera (Mathematics 101)</option>
+            <option value="Dr. Abel-Tesfaye">Dr. Abel-Tesfaye (Physics 201)</option>
+            <option value="Prof. Aubrey-Graham">Prof. Aubrey-Graham (English Literature)</option>
+            <option value="Dr. Elizabeth-Grant">Dr. Elizabeth-Grant (Computer Science)</option>
+            <option value="Coach Ashton-Simmonds">Coach Ashton-Simmonds (Physical Education)</option>
+          </select>
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <label for="subjectTaught"><strong>Subject(s) Taught:</strong></label><br>
+          <select id="subjectTaught" style="width: 100%; padding: 8px; margin-top: 5px;">
+            <option value="MATH101">Mathematics 101</option>
+            <option value="PHYS201">Physics 201</option>
+            <option value="ENGL150">English Literature</option>
+            <option value="COMP220">Computer Science</option>
+            <option value="PE100">Physical Education</option>
+          </select>
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>Criteria</th>
+                <th>Rating (1-5)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Clarity of Instruction</td>
+                <td><input type="number" min="1" max="5" value="3" style="width: 60px; padding: 5px;"></td>
+              </tr>
+              <tr>
+                <td>Subject Knowledge</td>
+                <td><input type="number" min="1" max="5" value="3" style="width: 60px; padding: 5px;"></td>
+              </tr>
+              <tr>
+                <td>Classroom Management</td>
+                <td><input type="number" min="1" max="5" value="3" style="width: 60px; padding: 5px;"></td>
+              </tr>
+              <tr>
+                <td>Approachability</td>
+                <td><input type="number" min="1" max="5" value="3" style="width: 60px; padding: 5px;"></td>
+              </tr>
+              <tr>
+                <td>Punctuality</td>
+                <td><input type="number" min="1" max="5" value="3" style="width: 60px; padding: 5px;"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    
+        <div style="margin-top: 20px;">
+          <label for="comments"><strong>Additional Comments:</strong></label><br>
+          <textarea id="comments" rows="4" style="width: 100%; padding: 10px; margin-top: 8px;"></textarea>
+        </div>
+      `;
+    
+    } else if (contentId === 'evaluation-report') { 
+      return `
+        <p>Please fill out the form to evaluate the individual's performance:</p>
+    
+        <div style="margin: 20px 0;">
+          <label for="individualName"><strong>Full Name:</strong></label><br>
+          <input type="text" id="individualName" placeholder="Enter full name" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <label for="roleOrPosition"><strong>Role/Position:</strong></label><br>
+          <input type="text" id="roleOrPosition" placeholder="e.g. Student, Team Leader, Employee" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>Criteria</th>
+                <th>Rating (1-5)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Work Quality / Academic Performance</td>
+                <td><input type="number" min="1" max="5" value="3" style="width: 60px; padding: 5px;"></td>
+              </tr>
+              <tr>
+                <td>Communication Skills</td>
+                <td><input type="number" min="1" max="5" value="3" style="width: 60px; padding: 5px;"></td>
+              </tr>
+              <tr>
+                <td>Teamwork / Collaboration</td>
+                <td><input type="number" min="1" max="5" value="3" style="width: 60px; padding: 5px;"></td>
+              </tr>
+              <tr>
+                <td>Initiative / Participation</td>
+                <td><input type="number" min="1" max="5" value="3" style="width: 60px; padding: 5px;"></td>
+              </tr>
+              <tr>
+                <td>Reliability / Responsibility</td>
+                <td><input type="number" min="1" max="5" value="3" style="width: 60px; padding: 5px;"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+    }else if (contentId === 'document-request') {
+      return `
+        <p>Please fill out the form to request official documents:</p>
+    
+        <div style="margin: 20px 0;">
+          <label for="fullName"><strong>Full Name:</strong></label><br>
+          <input type="text" id="fullName" placeholder="Enter your full name" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <label for="studentId"><strong>Student ID / Reference No.:</strong></label><br>
+          <input type="text" id="studentId" placeholder="Enter your student ID or reference number" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <label><strong>Select Document(s) to Request:</strong></label>
+          <table class="modal-table" style="margin-top: 10px;">
+            <thead>
+              <tr>
+                <th>Document</th>
+                <th>Price (PHP)</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Transcript of Records</td>
+                <td>₱150.00</td>
+                <td><input type="number" min="0" value="0" style="width: 60px; padding: 5px;"></td>
+              </tr>
+              <tr>
+                <td>Certificate of Enrollment</td>
+                <td>₱100.00</td>
+                <td><input type="number" min="0" value="0" style="width: 60px; padding: 5px;"></td>
+              </tr>
+              <tr>
+                <td>Good Moral Certificate</td>
+                <td>₱80.00</td>
+                <td><input type="number" min="0" value="0" style="width: 60px; padding: 5px;"></td>
+              </tr>
+              <tr>
+                <td>Diploma (Certified Copy)</td>
+                <td>₱200.00</td>
+                <td><input type="number" min="0" value="0" style="width: 60px; padding: 5px;"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <label for="pickupDate"><strong>Preferred Pickup Date:</strong></label><br>
+          <input type="date" id="pickupDate" style="padding: 8px; width: 100%; margin-top: 5px;">
+        </div>
+    
+        <div class="info-box">
+          <i class="fas fa-info-circle"></i>
+          <div>
+            <p><strong>Note:</strong> Please allow 3–5 working days for processing. Make sure all details are correct before submitting your request.</p>
+          </div>
+        </div>  
+      `;
+    } else if (contentId === 'school-map') {
+      return `
+        <p>Please explore the school campus map below:</p>
+    
+        <div style="margin: 20px 0;">
+          <label for="mapDescription"><strong>Map Description:</strong></label><br>
+          <input type="text" id="mapDescription" placeholder="Describe the map or campus" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+    
+        <!-- Embed the Google Map -->
+        <div style="width: 100%; height: 400px; overflow: hidden;">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d429.9716756873239!2d120.98883609995995!3d14.598207703437533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTTCsDM1JzUzLjkiTiAxMjDCsDU5JzIwLjkiRQ!5e0!3m2!1sen!2sph!4v1746375893323!5m2!1sen!2sph" 
+            width="100%" 
+            height="400" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+    
+        <p style="font-size: 14px; color: #555;">You can zoom in and out of the map using the controls. Explore the campus by interacting with the map.</p>
+      `;
+    }else if (contentId === 'account-statement') {
+      return `
+        <p>Please review your Statement of Account below:</p>
+    
+        <table class="modal-table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tuition Fee</td>
+              <td>₱20,000.00</td>
+            </tr>
+            <tr>
+              <td>Miscellaneous Fee</td>
+              <td>₱5,000.00</td>
+            </tr>
+            <tr>
+              <td>Laboratory Fee</td>
+              <td>₱3,500.00</td>
+            </tr>
+            <tr>
+              <td>Development Fee</td>
+              <td>₱2,500.00</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><strong>Total</strong></td>
+              <td><strong>₱31,000.00</strong></td>
+            </tr>
+            <tr>
+              <td>Amount Paid</td>
+              <td>₱18,500.00</td>
+            </tr>
+          </tfoot>
+        </table>
+    
+        <div style="margin-top: 20px;">
+          <button onclick="window.print()" style="padding: 10px 20px; background-color: #2c3e50; color: white; border: none; cursor: pointer;">
+            <i class="fas fa-print"></i> Download / Print Statement
+          </button>
+        </div>
+        
+      `;
+    } else if (contentId === 'payment-report') {
+      return `
+        <p>View your detailed payment history below:</p>
+    
+        <div style="margin: 20px 0;">
+          <label for="reportDateRange"><strong>Date Range:</strong></label><br>
+          <input type="date" id="startDate" style="padding: 8px; margin-right: 10px;">
+          to
+          <input type="date" id="endDate" style="padding: 8px; margin-left: 10px;">
+        </div>
+    
+        <table class="modal-table" style="margin-top: 20px;">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Reference No.</th>
+              <th>Payment Method</th>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-01-15</td>
+              <td>REF123456</td>
+              <td>Credit Card</td>
+              <td>Tuition Fee - 1st Installment</td>
+              <td>₱10,000.00</td>
+            </tr>
+            <tr>
+              <td>2025-02-20</td>
+              <td>REF789012</td>
+              <td>Bank Transfer</td>
+              <td>Miscellaneous Fee</td>
+              <td>₱5,000.00</td>
+            </tr>
+            <tr>
+              <td>2025-03-05</td>
+              <td>REF345678</td>
+              <td>Mobile Payment</td>
+              <td>Laboratory Fee</td>
+              <td>₱3,500.00</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4"><strong>Total Paid</strong></td>
+              <td><strong>₱18,500.00</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+    
+        <p style="font-size: 13px; color: #777; margin-top: 10px;">
+          This report summarizes all completed transactions. For official receipts, please visit the registrar's office.
+        </p>
+      `;
+    }else if (contentId === 'student-maintenance') {
+      return `
+        <p>Please fill out the form to update or view a student's information:</p>
+    
+        <div style="margin: 20px 0;">
+          <label for="studentName"><strong>Student's Name:</strong></label><br>
+          <input type="text" id="studentName" placeholder="Enter student's full name" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <label for="studentId"><strong>Student ID:</strong></label><br>
+          <input type="text" id="studentId" placeholder="Enter student ID" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <label for="dateOfBirth"><strong>Date of Birth:</strong></label><br>
+          <input type="date" id="dateOfBirth" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <label for="programEnrolled"><strong>Program Enrolled:</strong></label><br>
+          <input type="text" id="programEnrolled" placeholder="e.g. BS Psychology, BS Nursing" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <label for="yearLevel"><strong>Year Level:</strong></label><br>
+          <select id="yearLevel" style="width: 100%; padding: 8px; margin-top: 5px;">
+            <option value="1st">1st Year</option>
+            <option value="2nd">2nd Year</option>
+            <option value="3rd">3rd Year</option>
+            <option value="4th">4th Year</option>
+            <option value="5th">5th Year</option>
+          </select>
+        </div>
+    
+        <div style="margin: 20px 0;">
+          <label for="contactNumber"><strong>Contact Number:</strong></label><br>
+          <input type="text" id="contactNumber" placeholder="Enter contact number" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+    
+        <div style="margin-top: 20px;">
+          <label for="address"><strong>Address:</strong></label><br>
+          <textarea id="address" rows="4" style="width: 100%; padding: 10px; margin-top: 8px;"></textarea>
+        </div>
+    
+        <div style="margin-top: 20px;">
+          <label for="emergencyContact"><strong>Emergency Contact Name:</strong></label><br>
+          <input type="text" id="emergencyContact" placeholder="Enter emergency contact name" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+    
+        <div style="margin-top: 20px;">
+          <label for="emergencyContactNumber"><strong>Emergency Contact Number:</strong></label><br>
+          <input type="text" id="emergencyContactNumber" placeholder="Enter emergency contact number" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+      `;
+    }else if (contentId === 'registration-cert') {
+      return `
+        <p><strong>Registration Certificate</strong></p>
+    
+        <div style="margin: 20px 0;">
+          <p><strong>Student Name:</strong> John Doe</p>
+          <p><strong>Student ID:</strong> 2025-0001</p>
+          <p><strong>Program:</strong> BS Computer Science</p>
+          <p><strong>Miscellaneous Fee Paid:</strong> ₱5,000.00</p>
+        </div>
+    
+        <p>This is to certify that the student is officially enrolled for the current semester (Spring 2025).</p>
+    
+        <table class="modal-table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tuition Fee</td>
+              <td>₱20,000.00</td>
+            </tr>
+            <tr>
+              <td>Miscellaneous Fee</td>
+              <td>₱5,000.00</td>
+            </tr>
+            <tr>
+              <td>Laboratory Fee</td>
+              <td>₱3,500.00</td>
+            </tr>
+            <tr>
+              <td>Development Fee</td>
+              <td>₱2,500.00</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><strong>Total</strong></td>
+              <td><strong>₱31,000.00</strong></td>
+            </tr>
+            <tr>
+              <td>Amount Paid</td>
+              <td>₱18,500.00</td>
+            </tr>
+          </tfoot>
+        </table>
+    
+        <div style="margin-top: 30px;">
+          <p><strong>Course Schedule:</strong></p>
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>Subject Code</th>
+                <th>Description</th>
+                <th>Section</th>
+                <th>Units</th>
+                <th>Schedule</th>
+                <th>Room</th>
+                <th>Instructor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>MATH101</td>
+                <td>Mathematics 101</td>
+                <td>A</td>
+                <td>3</td>
+                <td>MWF 9:00AM - 10:30AM</td>
+                <td>Room 301</td>
+                <td>Prof. Ariana-Butera</td>
+              </tr>
+              <tr>
+                <td>PHYS201</td>
+                <td>Physics 201</td>
+                <td>B</td>
+                <td>4</td>
+                <td>TTh 11:00AM - 12:30PM</td>
+                <td>Room 405</td>
+                <td>Dr. Abel-Tesfaye</td>
+              </tr>
+              <tr>
+                <td>ENGL150</td>
+                <td>English Literature</td>
+                <td>A</td>
+                <td>3</td>
+                <td>MWF 1:00PM - 2:30PM</td>
+                <td>Room 204</td>
+                <td>Prof. Aubrey-Graham</td>
+              </tr>
+              <tr>
+                <td>COMP220</td>
+                <td>Computer Science</td>
+                <td>C</td>
+                <td>4</td>
+                <td>TTh 3:00PM - 4:30PM</td>
+                <td>Lab 101</td>
+                <td>Dr. Elizabeth-Grant</td>
+              </tr>
+              <tr>
+                <td>PE100</td>
+                <td>Physical Education</td>
+                <td>B</td>
+                <td>2</td>
+                <td>F 3:00PM - 5:00PM</td>
+                <td>Gymnasium</td>
+                <td>Coach Ashton-Simmonds</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <p><strong>Total Units:</strong> 16</p>
+        </div>
+    
+        <div style="margin-top: 20px;">
+          <button onclick="window.print()" style="padding: 10px 20px; background-color: #2c3e50; color: white; border: none; cursor: pointer;">
+            <i class="fas fa-print"></i> Download / Print Certificate
+          </button>
+        </div>
+    
+        <p style="font-size: 13px; color: #777; margin-top: 10px;">
+          This certificate confirms that the student is registered for the current semester. For further inquiries, please contact the registrar's office.
+        </p>
+      `;
+    }else if (contentId === 'medical-record') {
+      return `
+        <style>
+          @media print {
+            body {
+              font-family: Arial, sans-serif;
+            }
+            .content-section {
+              margin: 20px;
+              padding: 20px;
+              border: 1px solid #ccc;
+            }
+            table {
+              width: 100%;
+              margin-top: 20px;
+              border-collapse: collapse;
+            }
+            table th, table td {
+              border: 1px solid #ddd;
+              padding: 8px;
+              text-align: left;
+            }
+            table th {
+              background-color: #f2f2f2;
+            }
+            button {
+              display: none; /* Hide print button during print */
+            }
+          }
+        </style>
+    
+        <div class="content-section">
+    
+          <!-- Student Information Table -->
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th colspan="2">Student Information</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Name</strong></td>
+                <td>John Doe</td>
+              </tr>
+              <tr>
+                <td><strong>Student ID</strong></td>
+                <td>2025-0001</td>
+              </tr>
+              <tr>
+                <td><strong>Course</strong></td>
+                <td>BS Computer Science</td>
+              </tr>
+              <tr>
+                <td><strong>Date of Birth</strong></td>
+                <td>2002-05-14</td>
+              </tr>
+              <tr>
+                <td><strong>Blood Type</strong></td>
+                <td>O+</td>
+              </tr>
+              <tr>
+                <td><strong>Contact Number</strong></td>
+                <td>0917-000-0000</td>
+              </tr>
+            </tbody>
+          </table>
+    
+          <!-- Medical History Table -->
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th colspan="4">Medical History</th>
+              </tr>
+              <tr>
+                <th>Condition</th>
+                <th>Diagnosis Date</th>
+                <th>Treatment</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Asthma</td>
+                <td>2018-08-12</td>
+                <td>Inhaler Prescription</td>
+                <td>Stable</td>
+              </tr>
+              <tr>
+                <td>Chickenpox</td>
+                <td>2010-03-25</td>
+                <td>Self-treatment</td>
+                <td>Recovered</td>
+              </tr>
+              <tr>
+                <td>Allergic Rhinitis</td>
+                <td>2023-01-10</td>
+                <td>Antihistamines</td>
+                <td>Under Control</td>
+              </tr>
+            </tbody>
+          </table>
+    
+          <!-- Allergies Table -->
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th colspan="2">Allergies</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Penicillin</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Peanuts</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+    
+          <!-- Emergency Contact Table -->
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th colspan="2">Emergency Contact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Name</strong></td>
+                <td>Jane Doe</td>
+              </tr>
+              <tr>
+                <td><strong>Relationship</strong></td>
+                <td>Mother</td>
+              </tr>
+              <tr>
+                <td><strong>Contact Number</strong></td>
+                <td>0917-111-1111</td>
+              </tr>
+            </tbody>
+          </table>
+    
+          <!-- Checkup Dates Table -->
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th colspan="2">Medical Checkup Dates</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Last Checkup Date</strong></td>
+                <td>2025-04-15</td>
+              </tr>
+              <tr>
+                <td><strong>Next Checkup Date</strong></td>
+                <td>2025-10-15</td>
+              </tr>
+            </tbody>
+          </table>
+    
+          <!-- Print Button -->
+          <div style="margin-top: 30px;">
+            <button onclick="window.print()" style="padding: 10px 20px; background-color: #2c3e50; color: white; border: none; cursor: pointer;">
+              <i class="fas fa-print"></i> Download / Print Medical Record
+            </button>
+          </div>
+    
+          <p style="font-size: 13px; color: #777; margin-top: 10px;">
+            This medical record is a summary of your health history. For more detailed information, please visit the health services office.
+          </p>
+        </div>
       `;
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   }
 
   // Function to get icon class for a content ID
@@ -1504,21 +2263,51 @@ document.addEventListener('DOMContentLoaded', function() {
               <p>Enrollment for the next semester begins on May 1. Make sure to clear any outstanding balances.</p>
 
               </div>
-             <div class="announcement">
-<div class="announcement-title">Campus Announcements</div>
-<div class="announcement-date">Mar 25, 2025</div>
-<img src="Mabuhay.png" alt="Labor Day Tribute" />
-<p class="announcement-text short-text">
-  𝐓𝐡𝐞 𝐔𝐧𝐫𝐢𝐯𝐚𝐥𝐞𝐝 𝐖𝐨𝐫𝐤 𝐄𝐭𝐡𝐢𝐜 𝐨𝐟 𝐭𝐡𝐞 𝐅𝐢𝐥𝐢𝐩𝐢𝐧𝐨 𝐖𝐨𝐫𝐤𝐞𝐫 🔧🇵🇭 ...
-</p>
-<p class="announcement-text full-text">
-  𝐓𝐡𝐞 𝐔𝐧𝐫𝐢𝐯𝐚𝐥𝐞𝐝 𝐖𝐨𝐫𝐤 𝐄𝐭𝐡𝐢𝐜 𝐨𝐟 𝐭𝐡𝐞 𝐅𝐢𝐥𝐢𝐩𝐢𝐧𝐨 𝐖𝐨𝐫𝐤𝐞𝐫 🔧🇵🇭  
-  This Labor Day, we honor the invaluable role of work in shaping our nation and celebrate the steadfast dedication, resilience, and integrity of the Filipino worker, whose contributions are the pillars of our nation's growth. 🌱  
-  To the early risers, the tireless night workers, the frontliners 👩‍⚕️, the defenders of rights 🧑‍⚖️, and the educators who nurture the next generation 👩‍🏫 — your service powers the heartbeat of our communities.  
-  You are the silent force behind every milestone, the builders of hope, and the bearers of dreams. Heroes may not always wear capes, but they certainly wear uniforms, aprons, and ID lanyards. 🦸‍♀️🏷️  
-  "𝘠𝘰𝘶𝘳 𝘩𝘢𝘳𝘥 𝘸𝘰𝘳𝘬 𝘵𝘰𝘥𝘢𝘺 𝘭𝘢𝘺𝘴 𝘵𝘩𝘦 𝘨𝘳𝘰𝘶𝘯𝘥𝘸𝘰𝘳𝘬 𝘧𝘰𝘳 𝘵𝘩𝘦 𝘭𝘦𝘨𝘢𝘤𝘺 𝘰𝘧 𝘵𝘰𝘮𝘰𝘳𝘳𝘰𝘸."
-</p>
-<button class="toggle-btn" onclick="toggleText(this)">See More</button>
+             <style>
+  .announcement .full-text {
+    display: none;
+  }
+
+  .toggle-checkbox:checked ~ .short-text {
+    display: none;
+  }
+
+  .toggle-checkbox:checked ~ .full-text {
+    display: block;
+  }
+
+  .toggle-btn-label {
+    color: #007bff;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 8px;
+  }
+</style>
+
+<div class="announcement">
+  <div class="announcement-title">Campus Announcements</div>
+  <div class="announcement-date">Mar 25, 2025</div>
+  <img src="Mabuhay.png" alt="Labor Day Tribute" />
+
+  <!-- Hidden checkbox to control the toggle -->
+  <input type="checkbox" id="toggle-announcement-1" class="toggle-checkbox" hidden>
+
+  <p class="announcement-text short-text">
+    𝐓𝐡𝐞 𝐔𝐧𝐫𝐢𝐯𝐚𝐥𝐞𝐝 𝐖𝐨𝐫𝐤 𝐄𝐭𝐡𝐢𝐜 𝐨𝐟 𝐭𝐡𝐞 𝐅𝐢𝐥𝐢𝐩𝐢𝐧𝐨 𝐖𝐨𝐫𝐤𝐞𝐫 🔧🇵🇭 ...
+  </p>
+
+  <p class="announcement-text full-text">
+    𝐓𝐡𝐞 𝐔𝐧𝐫𝐢𝐯𝐚𝐥𝐞𝐝 𝐖𝐨𝐫𝐤 𝐄𝐭𝐡𝐢𝐜 𝐨𝐟 𝐭𝐡𝐞 𝐅𝐢𝐥𝐢𝐩𝐢𝐧𝐨 𝐖𝐨𝐫𝐤𝐞𝐫 🔧🇵🇭  
+    This Labor Day, we honor the invaluable role of work in shaping our nation and celebrate the steadfast dedication, resilience, and integrity of the Filipino worker, whose contributions are the pillars of our nation's growth. 🌱  
+    To the early risers, the tireless night workers, the frontliners 👩‍⚕️, the defenders of rights 🧑‍⚖️, and the educators who nurture the next generation 👩‍🏫 — your service powers the heartbeat of our communities.  
+    You are the silent force behind every milestone, the builders of hope, and the bearers of dreams. Heroes may not always wear capes, but they certainly wear uniforms, aprons, and ID lanyards. 🦸‍♀️🏷️  
+    "𝘠𝘰𝘶𝘳 𝘩𝘢𝘳𝘥 𝘸𝘰𝘳𝘬 𝘵𝘰𝘥𝘢𝘺 𝘭𝘢𝘺𝘴 𝘵𝘩𝘦 𝘨𝘳𝘰𝘶𝘯𝘥𝘸𝘰𝘳𝘬 𝘧𝘰𝘳 𝘵𝘩𝘦 𝘭𝘦𝘨𝘢𝘤𝘺 𝘰𝘧 𝘵𝘰𝘮𝘰𝘳𝘳𝘰𝘸."
+  </p>
+
+  <!-- Label that acts as a toggle button -->
+  <label for="toggle-announcement-1" class="toggle-btn-label">See More</label>
+</div>
+
 <div class="update-msg">Last updated: Just now</div>
 </div>
           </div>
@@ -1542,7 +2331,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="balance-item-label">Total Fees</div>
               </div>
               <div class="balance-item">
-                <div class="balance-item-value">₱15,000.00</div>
+                <div class="balance-item-value">₱18,500.00</div>
                 <div class="balance-item-label">Amount Paid</div>
               </div>
             </div>
@@ -1560,7 +2349,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <i class="fas fa-info-circle"></i>
         <div>
           <p><strong>Welcome to your Student Dashboard!</strong></p>
-          <p>Here you can access all your important academic information, track deadlines, view grades, and manage your student account. Use the menu on the left to navigate to different sections. Today is <span class="current-date">April 2, 2025</span>.</p>
+          <p>Here you can access all your important academic information, track deadlines, view grades, and manage your student account. Use the menu on the left to navigate to different sections. Today is <span class="current-date">May 5, 2025</span>.</p>
         </div>
       </div>
     `;
